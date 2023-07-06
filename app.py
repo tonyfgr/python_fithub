@@ -21,8 +21,8 @@ vectorizer = CountVectorizer()
 
 
 # Datos de entrenamiento (ejemplo)
-X_train = ['UNIVERSIDAD ALAS PERUANAS S.A.', '12/06/20']
-y_train = ['NOMBRE', 'FECHA']
+X_train = ['UNIVERSIDAD ALAS PERUANAS S.A.', '12/06/20', '11:46:07', 'S/ 855.11', '421257', '1932270011003']
+y_train = ['NOMBRE', 'FECHA', 'HORA', 'MONTO RECIBIDO', 'NO.OPE', 'A CTA.CORRIENTE S/ NRO:']
 
 # Ajustar el vectorizador al conjunto de datos de entrenamiento
 X_vectorized = vectorizer.fit_transform(X_train)
@@ -48,14 +48,14 @@ def reconocimiento():
     # Aplicar procesamiento de imagen con PIL y scikit-learn para reconocer datos
 
     # Vectorizar los datos reconocidos
-    X = ['NOMBRE', 'FECHA']  # Ejemplo de datos reconocidos
+    X = ['NOMBRE', 'FECHA', 'HORA', 'MONTO RECIBIDO','NO.OPE', 'A CTA.CORRIENTE S/ NRO:']  # Ejemplo de datos reconocidos
     X_vectorized = vectorizer.transform(X)
 
     # Realizar la predicción utilizando el modelo
     prediction = model.predict(X_vectorized)
 
     # Crear un diccionario con los resultados
-    resultados = {'NOMBRE': prediction[0], 'FECHA': prediction[1]}
+    resultados = {'NOMBRE': prediction[0], 'FECHA': prediction[1], 'HORA': prediction[2], 'MONTO RECIBIDO': prediction[3], 'NO.OPE': prediction[4], 'A CTA.CORRIENTE S/ NRO:': prediction[5]}
 
     # Exportar los resultados en formato JSON
     resultados_json = json.dumps(resultados)
